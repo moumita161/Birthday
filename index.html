@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fde2e4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            max-width: 750px; 
+            width: 90%;
+            animation: fadeInScaleUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInScaleUp {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        header h1 {
+            color: #d90429;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        #girlfriendName { color: #ef476f; }
+
+        .birthday-wish-intro { margin-bottom: 25px; }
+        .birthday-wish-intro img.main-birthday-image {
+            max-width: 450px;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 4px solid #ef476f;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .birthday-wish-intro h2 {
+            color: #073b4c;
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        #ageSuffix { font-size: 0.8em; vertical-align: super; }
+        #age { color: #118ab2; }
+        #countdown {
+            font-size: 1.1em; color: #06d6a0; font-weight: bold;
+            margin-top: 10px; min-height: 25px; background-color: #e6fff9;
+            padding: 8px; border-radius: 8px; display: inline-block;
+        }
+        .countdown-item { font-weight: bold; color: #073b4c; margin: 0 3px; }
+        .countdown-label { font-size: 0.8em; color: #555; }
+
+        .themed-section {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-left: 5px solid #ef476f; 
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        .themed-section h2 {
+            color: #d90429; 
+            font-size: 1.7em;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 2px solid #fde2e4;
+            padding-bottom: 10px;
+        }
+        .themed-section p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 15px;
+        }
+        .themed-section video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; 
+            justify-content: center;
+        }
+        
+        #firstDate .image-grid img,
+        #memorableMoments .image-grid img {
+            width: 180px; 
+            height: 240px;   
+            object-fit: cover; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            #firstDate .image-grid img,
+            #memorableMoments .image-grid img {
+                width: 45%; 
+                height: auto;    
+                aspect-ratio: 3 / 4; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            #firstDate .image-grid img,
+            #memorableMoments .image-grid img {
+                width: 80%;  
+                height: auto;    
+                aspect-ratio: 3 / 4; 
+                margin-left: auto; 
+                margin-right: auto;
+            }
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 300px; 
+            margin: auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .slideshow-image { 
+            width: 100%;
+            height: auto; 
+            aspect-ratio: 3 / 4; 
+            object-fit: cover; 
+            display: block;
+            border-radius: 8px;
+            background-color: #e0e0e0; 
+        }
+        .slideshow-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .slideshow-nav button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .slideshow-nav button:hover { background-color: rgba(0, 0, 0, 0.8); }
+        .prev { margin-left: 10px; }
+        .next { margin-right: 10px; }
+
+        .video-container {
+            margin-bottom: 20px; 
+        }
+        .video-container video { 
+            width: 100%;
+            max-width: 600px; 
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+        }
+        .video-container p { 
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .message {
+            margin-top: 30px;
+            text-align: left;
+            line-height: 1.7;
+            padding: 20px;
+            background-color: #fff9f0;
+            border-radius: 8px;
+            border-left: 5px solid #073b4c;
+            display: none;
+        }
+        .message h2 {
+            color: #073b4c;
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .message p { 
+            font-size: 1em; 
+            color: #444; 
+            margin-bottom: 1em;
+        }
+
+        footer {
+            margin-top: 30px; padding-top: 15px;
+            border-top: 1px solid #fde2e4;
+            font-size: 0.9em; color: #777;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2em; }
+            .birthday-wish-intro h2 { font-size: 1.5em; }
+            .themed-section h2 { font-size: 1.4em; }
+            .message h2 { font-size: 1.4em; }
+            .birthday-wish-intro img.main-birthday-image { 
+                max-width: 100%; 
+            }
+            #countdown { font-size: 1em; padding: 6px; }
+            .container { padding: 15px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Happy Birthmonth, <span id="girlfriendName">Love of my life</span>♊!</h1>
+        </header>
+
+        <section class="birthday-wish-intro">
+            <img src="WhatsApp Image 2025-06-03 at 02.49.55_9a7ee9d5.jpg" alt="Birthday Fun!" class="main-birthday-image"
+                 onerror="this.onerror=null; this.src='https://placehold.co/450x253/FFC0CB/D1001F?text=Birthday+Joy!';">
+            <h2>
+                Let the official countdown to the best day of the year begin! <br>it's your <span id="age"></span><span id="ageSuffix"></span> Birthday Bbz!
+            </h2>
+            <p id="countdown"></p>
+        </section>
+
+        <section class="themed-section" id="firstDate">
+            <h2>Our First Date</h2>
+            <p>
+                Remember that day at the Orange Cafe? 🍊 My heart was doing little flips! I was so incredibly shy when you came so close. 🙈 You kept looking at me with that special gaze, and I remember blushing and thinking, 'Emne ki dekho bicchiri chele ta ke😑?'. You even bravely tried to hold my hand and maybe sneak a kiss right there in public! 🫣 I was a bundle of nerves and pure shyness back then. But oh, how beautifully everything changed after that, leading us to all the wonderful moments we share now. 🥰
+            </p>
+            <div class="image-grid">
+                <img src="first_date3.jpg" alt="Our First Date Memory 1" onerror="this.onerror=null; this.src='https://placehold.co/180x240/A2D2FF/000000?text=First+Date+1';">
+                <img src="firstdate_2.jpg" alt="Our First Date Memory 2" onerror="this.onerror=null; this.src='https://placehold.co/180x240/BDE0FE/000000?text=First+Date+2';">
+            </div>
+        </section>
+
+        <section class="themed-section" id="beautifulMoments">
+            <h2>Our Beautiful Moments</h2>
+            <p>
+                So many smiles, laughs, and adventures together. Here are just a few snapshots of our amazing journey.
+            </p>
+            <div class="slideshow-container">
+                <img alt="Beautiful Moment" id="slideshowImage" class="slideshow-image">
+                <div class="slideshow-nav">
+                    <button class="prev" onclick="changeSlide(-1)">&#10094; Prev</button>
+                    <button class="next" onclick="changeSlide(1)">Next &#10095;</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="themed-section" id="videoMemories">
+            <h2>Our Video Memories</h2>
+            <p>
+                Some moments are best relived in motion! Here are a few clips that always make me smile.
+            </p>
+            
+            <div class="video-container">
+                <video controls> 
+                    <source src="video1.mp4" type="video/mp4">
+                    Your browser does not support the video tag. Maybe it's time for an upgrade? ;)
+                </video>
+                <p>See! how beautiful we are together😻</p>
+            </div>
+
+            <div class="video-container">
+                <video controls> 
+                    <source src="video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p>The world can wait. Right now, this story is just for us. All I dream of is your eyes. ❤️ </p>
+            </div>
+        </section>
+        
+        <section class="message" id="birthdayMessageSection">
+            <h2>My Dearest Wife💘🌺😗</h2>
+            <p>Happy birthday to my universe, my incredibly beautiful wifeyy! 💕💋</p>
+            <p>Today is all about you, but I have to be honest: you mean the world to me every single day. I know I’m not perfect. Sometimes I make you sad, and sometimes I drive you crazy and angry. I feel terrible for every tear, but I have to confess, there's a part of me that loves every side of you—the fire in your eyes when you're angry, the vulnerable innocence when you're sad, and the breathtaking beauty that shines when you're happy. I'm sorry for the times I've made you cry, baby. 🥺 (Though, to be fair, I make your pussy cry too, so at least I’m consistent! 😂)</p>
+            <p>Before you, my life was a ship without a rudder, just drifting aimlessly. You are my direction, my inspiration, and the reason I wake up wanting to be a better man. You are the "why" behind everything I do. Honestly, you being born is the reason I feel truly alive. 🥹 You are my everything, jaaan.</p>
+            <p>I’m still so sorry for forgetting your birthday last year. Seeing you hurt broke my heart, and I promised myself I would never be that person again. This year, and every year for the rest of my life, you will feel cherished. I promise. As long as I'm breathing, your birthday will be a celebration.</p>
+            <p>Muuuuuuuwaaaaaaaaaaaaaaaaaaahhh, jaaan! 💕💋</p>
+            <p>I wish more than anything that we could cut your birthday cake together today. 🧁 This distance is torture, but I close my eyes and picture a future where there are no more goodbyes, no more screens—just us. A future with endless time for each other and an infinite amount of love. Please never give up on that dream, baby. One day, it will be our reality.</p>
+            <p>Lastly, I need to say congratulations on winning that very first race—the one against all the others to your mom's womb 🫥! Thank you for being born. Thank you for choosing me. And thank you for staying by my side. "Thank you" feels like such a small word for the lifetime of love and support you give me.</p>
+            <p>I love you more than words can say, my wifeyy. 💕💋😘</p>
+            <p>With all my love, today and always,
+                <br>Your beloved
+                <span id="yourSignatureName"></span>
+                🤍😘
+            </p>
+        </section>
+
+        <footer>
+            <p>Made with ❤️ for you!</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const girlfriendName = "Shawty";
+            const yourName = "Sayem"; 
+            const birthYear = 2009; 
+            const birthMonth = 6;
+            const birthDay = 15;
+
+            document.getElementById('girlfriendName').textContent = girlfriendName;
+            document.querySelectorAll('#girlfriendName2').forEach(el => el.textContent = "Wife💘🌺😗");
+            document.getElementById('yourSignatureName').textContent = yourName;
+
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            const currentMonth = today.getMonth() + 1;
+            const currentDate = today.getDate();
+
+            const isBirthdayToday = (currentMonth === birthMonth && currentDate === birthDay);
+            const hasBirthdayPassed = (currentMonth > birthMonth || (currentMonth === birthMonth && currentDate > birthDay));
+
+            let nextBirthdayYear = currentYear;
+            if (hasBirthdayPassed) {
+                nextBirthdayYear = currentYear + 1;
+            }
+            
+            const ageOnUpcomingBirthday = nextBirthdayYear - birthYear;
+            document.getElementById('age').textContent = ageOnUpcomingBirthday;
+
+            function getAgeSuffix(age) {
+                if (age % 100 >= 11 && age % 100 <= 13) return 'th';
+                switch (age % 10) {
+                    case 1: return 'st';
+                    case 2: return 'nd';
+                    case 3: return 'rd';
+                    default: return 'th';
+                }
+            }
+            document.getElementById('ageSuffix').textContent = getAgeSuffix(ageOnUpcomingBirthday);
+
+            const countdownElement = document.getElementById('countdown');
+            const messageSection = document.getElementById('birthdayMessageSection');
+            
+            if (isBirthdayToday) {
+                countdownElement.innerHTML = "🎉 It's today happy birthday to the most beautiful girl🧁🤍🥳🎉";
+                countdownElement.style.color = "#d90429";
+                countdownElement.style.fontWeight = "bold";
+                countdownElement.style.fontSize = "1.3em";
+                
+                if(messageSection) {
+                    messageSection.style.display = 'block';
+                }
+            } else if (hasBirthdayPassed) {
+                 countdownElement.innerHTML = `<p>I hope you had an amazing birthday with me, baby. 🤍🥹 I really hope you liked my gift. I wasn't sure if it was okay or not, but I tried my best. 😘<br><br>...Umm, the real gift is missing, right? Just wait for my arrival. You'll get the best gift then! 😁</p>`;
+            } else {
+                const targetBirthdayDate = new Date(nextBirthdayYear, birthMonth - 1, birthDay);
+                let countdownInterval = setInterval(function() {
+                    const now = new Date().getTime();
+                    const distance = targetBirthdayDate - now;
+
+                    if (distance < 0) {
+                        clearInterval(countdownInterval);
+                        location.reload();
+                        return;
+                    }
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    
+                    countdownElement.innerHTML = `
+                        Only
+                        <span class="countdown-item">${days}<span class="countdown-label">d</span></span>
+                        <span class="countdown-item">${hours}<span class="countdown-label">h</span></span>
+                        <span class="countdown-item">${minutes}<span class="countdown-label">m</span></span>
+                        <span class="countdown-item">${seconds}<span class="countdown-label">s</span></span>
+                        left!`;
+                }, 1000);
+            }
+
+            const slideshowImages = [
+                'moment_1.jpg', 'moment_2.jpg', 'moment_3.jpg', 'moment_4.jpg'
+            ];
+            const slideshowPlaceholder = 'https://placehold.co/300x400/EEEEEE/AAAAAA?text=Image+Error'; 
+            let currentSlideIndex = 0;
+            const slideshowImageElement = document.getElementById('slideshowImage');
+
+            function showSlide(index) {
+                if (!slideshowImageElement) return;
+                if (slideshowImages.length === 0) {
+                    slideshowImageElement.src = slideshowPlaceholder;
+                    slideshowImageElement.alt = "Slideshow - No images configured";
+                    return;
+                }
+                currentSlideIndex = (index + slideshowImages.length) % slideshowImages.length;
+                slideshowImageElement.src = slideshowImages[currentSlideIndex]; 
+                slideshowImageElement.alt = `Beautiful Moment ${currentSlideIndex + 1}`;
+            }
+            
+            window.changeSlide = function(direction) { showSlide(currentSlideIndex + direction); }
+            
+            if (slideshowImageElement) {
+                slideshowImageElement.onerror = function() { 
+                    this.onerror=null; this.src=slideshowPlaceholder; this.alt="Error loading image.";
+                };
+                showSlide(0);
+            }
+        });
+    </script>
+</body>
+</html>
